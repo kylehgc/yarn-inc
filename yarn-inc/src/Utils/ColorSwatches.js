@@ -1,6 +1,8 @@
 import tinyColor from "tinycolor2";
 import pantoneColor from '../Data/pantone-colors.json'
 import getNames from './getNames'
+import fontPairs from '../Data/fontpairs.json'
+
 const colorTransformations = ['complement','monochromatic']
 
 const getColorTransformation = () => {
@@ -49,7 +51,7 @@ const getComplementSwatch = (colorString) => {
 }
     
 const getColorSwatches = async () => {
-  
+  console.log(fontPairs)
   const transformation = getColorTransformation()
    
   const color = getRandomColor()

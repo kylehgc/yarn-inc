@@ -4,6 +4,20 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
+import '@fontsource/expletus-sans/'
+import '@fontsource/hind/'
+import '@fontsource/ibm-plex-sans/'
+import '@fontsource/ibm-plex-serif'
+import '@fontsource/red-hat-display'
+import '@fontsource/fraunces'
+import '@fontsource/commissioner'
+import '@fontsource/libre-baskerville'
+import '@fontsource/roboto'
+import '@fontsource/libre-franklin'
+import '@fontsource/poppins'
+import '@fontsource/fraunces'
+import '@fontsource/lexend-deca'
+import '@fontsource/firago'
 
 ReactDOM.render(
   <Fragment>

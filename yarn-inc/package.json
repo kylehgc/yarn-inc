@@ -3,9 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/icons": "^1.1.7",
     "@chakra-ui/react": "^1.8.3",
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
+    "@fontsource/barlow": "^4.5.2",
+    "@fontsource/commissioner": "^4.5.3",
+    "@fontsource/dm-sans": "^4.5.2",
+    "@fontsource/epilogue": "^4.5.4",
+    "@fontsource/expletus-sans": "^4.5.4",
+    "@fontsource/firago": "^4.5.1",
+    "@fontsource/fraunces": "^4.5.2",
+    "@fontsource/hind": "^4.5.2",
+    "@fontsource/ibm-plex-sans": "^4.5.4",
+    "@fontsource/ibm-plex-serif": "^4.5.3",
+    "@fontsource/jetbrains-mono": "^4.5.3",
+    "@fontsource/lexend-deca": "^4.5.5",
+    "@fontsource/libre-baskerville": "^4.5.2",
+    "@fontsource/libre-franklin": "^4.5.3",
+    "@fontsource/open-sans": "^4.5.5",
+    "@fontsource/poppins": "^4.5.2",
+    "@fontsource/red-hat-display": "^4.5.4",
+    "@fontsource/roboto": "^4.5.3",
+    "@fontsource/rubik": "^4.5.3",
+    "@fontsource/vollkorn": "^4.5.4",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^10.4.9",
     "@testing-library/user-event": "^12.8.3",
@@ -25,7 +46,10 @@
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
-      "indent": [2,2]
+      "indent": [
+        2,
+        2
+      ]
     }
   },
   "browserslist": {

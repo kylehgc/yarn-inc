@@ -1,3 +1,5 @@
+
+import Fonts from './Components/Fonts'
 import React from 'react';
 import Palette from './Components/Palette';
 import {
@@ -15,7 +17,7 @@ import {
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <Palette/>
+      <Fonts/>
     </ChakraProvider>
   );
 }
