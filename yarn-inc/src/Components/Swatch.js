@@ -13,12 +13,12 @@ const Swatch = ({swatch, label}) => {
             
      
      
-          <Fragment>
+      <Fragment>
           
-          {swatch.map((color,index) => (
-            <Flex bg={color.toString()} key={index}  height='13vh'>Color: {color} Type: {label}</Flex>  
-          ))} 
-          </Fragment>
+        {swatch.map((color,index) => (
+          <Flex bg={color.toString()} key={index}  height='13vh'>Color: {color} Type: {label}</Flex>  
+        ))} 
+      </Fragment>
       
     </Fragment>
   )
