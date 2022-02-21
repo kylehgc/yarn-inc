@@ -1,4 +1,4 @@
-import Swatch from "./Swatch";
+
 import getColors from "../Utils/ColorSwatches"
 import {Fragment,useEffect,useState } from "react";
 import { useTheme,Button, Flex, Spacer } from "@chakra-ui/react";
@@ -6,7 +6,8 @@ import { useTheme,Button, Flex, Spacer } from "@chakra-ui/react";
 const Palette = () => {
   const [colors,setColors] = useState()
   const [loading, setLoading] = useState(true)
-  const theme = useTheme()
+  const theme = useTheme() 
+  console.log(theme)
 
   const handleKeyPress = (event) => {
     if (event.code === 'Space') {
