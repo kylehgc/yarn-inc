@@ -1,7 +1,7 @@
 
 import getColors from "../Utils/ColorSwatches"
 import {Fragment,useEffect,useState } from "react";
-import { useTheme,Button, Flex} from "@chakra-ui/react";
+import {Button, Flex} from "@chakra-ui/react";
 
 const Palette = () => {
   const [colors,setColors] = useState()
@@ -14,9 +14,10 @@ const Palette = () => {
     }
   }
   useEffect(() => {
-    
+    document.addEventListener('dblclick', resetColors)
     document.addEventListener('keyup', handleKeyPress)
     return () => {
+      document.remove('dblclick', resetColors)
       document.removeEventListener('keyup', handleKeyPress)
     }
 
@@ -54,7 +55,7 @@ const Palette = () => {
         {colors.swatch.map((color,index) => (
           <Flex bg={color.color} key={index}  height='13vh'>Color: {color.color} {color.name} Type: {colors.transformation}</Flex>  
         ))} 
-        <Button alignSelf='center' onKeyDown={resetColors} width='40%' onClick={resetColors} colorScheme='blue' size='lg'>New Colors</Button>
+        <Button alignSelf='center' ond onKeyDown={resetColors} width='40%' onClick={resetColors} colorScheme='blue' size='lg'>New Colors</Button>
       </Flex>
     </Fragment>
   )

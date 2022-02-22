@@ -3,12 +3,30 @@ import pantoneColor from '../Data/pantone-colors.json'
 import getNames from './getNames'
 import fontPairs from '../Data/fontpairs.json'
 
-const colorTransformations = ['complement','monochromatic']
+const colorTransformations = ['splitcomplement','complement','monochromatic','analogous']
 
 const getColorTransformation = () => {
-  return colorTransformations[Math.floor(Math.random() * 2)]
+  return colorTransformations[Math.floor(Math.random() * colorTransformations.length)]
 }
+
+const getAnalogousSwatch = (color) => {
+  const results = 6
+  const colorSlices = 5
+  const analogousSwatch = tinyColor(color).analogous(results,colorSlices)
+  return [...analogousSwatch.map(color=> color.toHexString())]
+}
+
+const getSplitComplementSwatch = (color) => {
+  const splitCompliments = tinyColor(color).splitcomplement()
+  const splitComplimentHex = splitCompliments.map((color) => color.toHexString())
+  const splitSwatch = splitComplimentHex.reduce((array, color) => {
+    const brighterColour = tinyColor(color).brighten(20).toHexString()
+    return array.concat([color,brighterColour])
+  },[])
+
   
+  return splitSwatch
+}
 const getMonochromaticSwatch = (color) => {
     
   const monoSwatch = tinyColor(color).monochromatic()
@@ -26,34 +44,39 @@ const getRandomColor = () => {
   
 const getPastelSwatch = (color) => {
   
-  return [10,20].map((adjustment) => tinyColor(color).lighten(adjustment).toString())
-    
+  const pastels = [30,60].map((adjustment) => tinyColor(color).brighten(adjustment).toString())
+  return [color, ...pastels]
 }
-
+const getComplementSwatch = (colorString) => {
+  
+  
+  const complimentaryColorString = tinyColor(colorString).complement().toHexString()
+  
+  const colorSwatch = getPastelSwatch(colorString)
+ 
+  const complimentarySwatch = getPastelSwatch(complimentaryColorString)
+  return colorSwatch.concat(complimentarySwatch)
+}
 
 const getSwatches = (transformation,color) => {
   if(transformation === 'complement') {
     return getComplementSwatch(color)
   } else if (transformation=== 'monochromatic') {
     return getMonochromaticSwatch(color)
+  } else if (transformation === 'analogous') {
+    return getAnalogousSwatch(color)
+  } else if (transformation === 'splitcomplement') {
+    return getSplitComplementSwatch(color)
   }
 
     
 }
-const getComplementSwatch = (colorString) => {
-  
 
-  const complimentaryColorString = tinyColor(colorString).complement().toHexString()
-   
-  const colorSwatch = [...getPastelSwatch(colorString), colorString]
-  const complimentarySwatch = [...getPastelSwatch(complimentaryColorString),complimentaryColorString]
-  return colorSwatch.concat(complimentarySwatch)
-}
     
 const getColorSwatches = async () => {
-  console.log(fontPairs)
+
   const transformation = getColorTransformation()
-   
+  console.log(transformation)
   const color = getRandomColor()
   const swatchColors = getSwatches(transformation,color.color)
     
@@ -61,6 +84,9 @@ const getColorSwatches = async () => {
   const swatch = swatchColors.map((color,index) => (
     {color: color, name: swatchNames[index]}
   ))
+  const mostReadable = tinyColor.mostReadable(swatchColors[0],[swatchColors])
+  
+  
   return {...color, swatch: swatch, transformation: transformation}
 
 }
