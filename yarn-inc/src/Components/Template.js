@@ -1,77 +1,79 @@
-import SubNavCTA from '../Components/Navs/SubNavCTA'
-import GridListWithHeading from './Features/GridListWithHeading.js'
-import LgLogo from './Footers/LgLogo'
-import { Flex, Button} from '@chakra-ui/react'
-import getFontPair from '../Utils/api'
-import { useState,useEffect } from 'react'
-import getColors from '../Utils/ColorSwatches'
+import SubNavCTA from '../Components/Navs/SubNavCTA';
+import GridListWithHeading from './Features/GridListWithHeading.js';
+import LgLogo from './Footers/LgLogo';
+import { Flex, Button } from '@chakra-ui/react';
+import getFontPair from '../Utils/api';
+import { useState, useEffect } from 'react';
+import getColors from '../Utils/ColorSwatches';
 
 const Template = () => {
-  const [colors,setColors] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [fonts, setFonts] = useState(null)
-  const handleKeyPress = (event) => {
+  const [colors, setColors] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [fonts, setFonts] = useState(null);
+  const handleKeyPress = event => {
     if (event.repeat) {
-      event.preventDefault()
-      return
+      event.preventDefault();
+      return;
     }
     if (event.code === 'Space') {
-      event.preventDefault()
-      resetTemplate()
+      event.preventDefault();
+      resetTemplate();
     }
-  
-  }
+  };
   useEffect(() => {
-    document.addEventListener('dblclick', resetTemplate)
-    document.addEventListener('keydown', handleKeyPress)
+    document.addEventListener('dblclick', resetTemplate);
+    document.addEventListener('keydown', handleKeyPress);
     return () => {
-      document.removeEventListener('dblclick', resetTemplate)
-      document.removeEventListener('keydown', handleKeyPress)
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+      document.removeEventListener('dblclick', resetTemplate);
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     const fetchTemplate = async () => {
-      if(colors && fonts) {
-        setLoading(false)
+      if (colors && fonts) {
+        setLoading(false);
       } else {
-        
         setColors(await getColors());
-        setFonts(await getFontPair())
-        setLoading(false)
+        setFonts(await getFontPair());
+        setLoading(false);
       }
-    }
-    fetchTemplate()
+    };
+    fetchTemplate();
   }, []);
   const resetTemplate = async () => {
-    const newColours = await getColors()
-    const newFonts = await getFontPair()
-    setColors(newColours)
-    setFonts(newFonts)
-  }
-  if(loading) {
-    return null
+    const newColours = await getColors();
+    const newFonts = await getFontPair();
+    setColors(newColours);
+    setFonts(newFonts);
+  };
+  if (loading) {
+    return null;
   }
   return (
-    <Flex bg={colors.colors[0]} direction='column'>
-      <Button position='fixed' 
-        rounded='3xl'
-        variant='ghost'
+    <Flex bg={colors.colors[0]} direction="column">
+      <Button
+        position="fixed"
+        minW={'40vw'}
+        rounded="3xl"
+        variant="ghost"
         color={colors.colors[3]}
-        transform='translateX(-50%)'
-        bg={colors.colors[4]} 
-        left='50%' top='75%' 
-        height='20%' width='25%' 
-        onClick={resetTemplate}>
+        transform="translateX(-50%)"
+        bg={colors.colors[4]}
+        left="50%"
+        top="75%"
+        height="15%"
+        width="25%"
+        onClick={resetTemplate}
+      >
         RELOAD
       </Button>
 
-      <SubNavCTA colors={colors.colors} fonts={fonts}/ >
-      <GridListWithHeading colors={colors.colors} fonts={fonts}/>
+      <SubNavCTA colors={colors.colors} fonts={fonts} />
+      <GridListWithHeading colors={colors.colors} fonts={fonts} />
       <LgLogo fonts={fonts} colors={colors.colors} />
     </Flex>
-  )
-}
+  );
+};
 
-export default Template
-
+export default Template;
